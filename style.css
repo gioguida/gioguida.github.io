@@ -78,7 +78,9 @@ h3 { font-size: 1.35rem; letter-spacing: -.025em; }
 .about-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .about-list li { padding: 18px 0; border-top: 1px solid var(--base2); }
 .about-list strong { display: block; color: var(--base03); }
-.footer { padding: 32px 0 48px; border-top: 1px solid var(--base2); font-size: .85rem; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 32px 0 48px; border-top: 1px solid var(--base2); font-size: .85rem; }
+.footer-links { display: flex; gap: 18px; color: var(--base01); }
+.footer-links a:hover { color: var(--blue); }
 .footer span { color: var(--orange); }
 
 .subpage { padding: 160px 0 90px; }
@@ -121,4 +123,5 @@ img[src*="aise/comparative-loss-landscapes"] { object-fit: contain; background: 
   .section-heading p { margin-top: 18px; }
   .subpage { padding-top: 130px; }
   .publication { grid-template-columns: 35px 1fr 20px; gap: 10px; }
+  .footer { align-items: flex-start; flex-direction: column; gap: 12px; }
 }
