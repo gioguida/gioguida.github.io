@@ -37,6 +37,7 @@ img { display: block; max-width: 100%; }
 }
 .site-nav a { padding: 5px 13px; border-radius: 999px; font-size: .82rem; color: var(--base01); }
 .site-nav a:hover, .site-nav a[aria-current="page"] { background: var(--base2); color: var(--base03); }
+.site-nav a[href*="lecture-notes"] { display: none; }
 
 .page { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 9%; padding: 100px 0 70px; }
