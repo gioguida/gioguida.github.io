@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PLMs for protein design — Your Name</title><link rel="stylesheet" href="../style.css"></head><body><nav class="site-nav" aria-label="Main navigation"><a href="../index.html">home</a><a href="../projects.html" aria-current="page">projects</a><a href="../lecture-notes.html">lecture notes</a></nav><main class="page subpage"><div class="detail-hero"><div><p class="eyebrow">01 / semester project · spring 2026</p><h1>PLMs for protein design</h1><p class="lede">Fine-tuning a protein language model with the aim of generating novel, strongly binding flu antibodies for wet lab testing.</p></div><div class="project-image art-one"><div class="mini-window"><div class="mini-line short"></div><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line short"></div></div></div></div><div class="detail-body"><div><h2>The short version</h2><p>This is a placeholder project description. Explain the question you started with, the method you used, and what you learned.</p><p><span class="tag">protein design</span><span class="tag">language models</span><span class="tag">machine learning</span></p></div><aside class="side-note"><strong>My role</strong><p class="muted">Research and implementation</p><strong>Tools</strong><p class="muted">Python · PyTorch</p></aside></div></main><footer class="page footer">← <a href="../projects.html">back to projects</a></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adapting Protein Language Models for Generative C05 CDR-H3 Design</title>
+  <meta name="description" content="Semester project on adapting ESM2 for generative C05 antibody CDR-H3 design.">
+  <link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png?v=3"><link rel="icon" href="../favicon.ico?v=3" sizes="any"></head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="../index.html">home</a>
+    <a href="../projects.html" aria-current="page">projects</a>
+    <a href="../lecture-notes.html">lecture notes</a>
+  </nav>
+  <main class="page subpage">
+    <div class="detail-hero">
+      <div>
+        <p class="eyebrow">01 / semester project &middot; spring 2026</p>
+        <h1>Adapting Protein Language Models for Generative C05 CDR-H3 Design</h1>
+        <p class="lede">Adapting ESM2 with antibody-domain pretraining and preference optimization to propose novel C05 antibody variants for downstream screening and experimental validation.</p>
+        <a class="download" href="../media/projects/plm-antibody-design/report.pdf">download report &nearr;</a>
+      </div>
+      <img class="project-image project-photo protein-structure" src="../media/projects/plm-antibody-design/0dYECOEFeLCSLwo5KSYAI.png" alt="Molecular rendering of the C05 antibody protein complex">
+    </div>
+    <div class="detail-body">
+      <div>
+        <h2>Overview</h2>
+        <p>This semester project investigates whether a pretrained protein language model can become a useful proposal model for C05 antibody design. The focus is the 24-amino-acid CDR-H3 loop, which drives the antibody's interaction with the influenza hemagglutinin receptor-binding site.</p>
+        <p>Starting from ESM2, I first performed domain-adaptive pretraining on human heavy-chain sequences from the Observed Antibody Space. I then applied Direct Preference Optimization (DPO) to deep-mutational-scanning measurements, teaching the model to prefer C05 variants with stronger binding enrichment. Full-parameter and LoRA-based adaptation were compared, followed by candidate generation with Gibbs sampling and stochastic beam search.</p>
+        <p>DPO substantially improved agreement with held-out binding-enrichment data. Its stochastic-beam generator also proposed many unique, training-novel variants whose top candidates received stronger scores from two independent in-silico evaluators than random and position-specific baselines. These are computational results: candidate sequences still require independent filtering and experimental validation.</p>
+        <p><span class="tag">antibody design</span><span class="tag">protein language models</span><span class="tag">DPO</span><span class="tag">LoRA</span></p>
+      </div>
+      <aside class="side-note">
+        <strong>Authors</strong>
+        <p class="muted">Giovanni Guidarini<br>Marco De Negri</p>
+        <strong>Supervision</strong>
+        <p class="muted">Prof. Dr. Andreas Krause<br>Dr. Scott Sussex</p>
+        <strong>Course</strong>
+        <p class="muted"><em>Learning and Adaptive Systems</em><br>ETH Z&uuml;rich &middot; Spring 2026</p>
+        <a class="download" href="../media/projects/plm-antibody-design/report.pdf">read the report &nearr;</a>
+      </aside>
+    </div>
+  </main>
+  <footer class="page footer">&larr; <a href="../projects.html">back to projects</a></footer>
+</body>
+</html>
