@@ -1,0 +1,39 @@
+{
+  "title": "Giovanni Guidarini — Portfolio",
+  "description": "Personal portfolio of Giovanni Guidarini.",
+  "url": "https://gioguida.github.io",
+  "year": 2026,
+  "home": {
+    "description": "Computational Science and Engineering master student at ETH Zurich. Previously Mathematical Engineering at Politecnico di Milano."
+  },
+  "bio": {
+    "title": "Bio",
+    "eyebrow": "About",
+    "labels": {
+      "birthDate": "Birth date",
+      "birthCity": "Birth city",
+      "currentCity": "Current city",
+      "education": "Education",
+      "internship": "Internship",
+      "downloadCv": "Download CV"
+    },
+    "photo": "media/profile_pic_wallpaper1.png",
+    "photoAlt": "Portrait of Giovanni Guidarini outdoors",
+    "cvFile": "media/Giovanni_Guidarini_CV.pdf",
+    "internshipIds": ["anima_sgr_ai_intern"]
+  },
+  "navigation": [
+    {"label": "home", "href": "index.html", "key": "home"},
+    {"label": "bio", "href": "bio.html", "key": "bio"},
+    {"label": "projects", "href": "projects.html", "key": "projects"},
+    {"label": "lecture notes", "href": "lecture-notes.html", "key": "lecture-notes"}
+  ],
+  "social": [
+    {"label": "GitHub", "href": "https://github.com/gioguida"},
+    {"label": "LinkedIn", "href": "https://www.linkedin.com/in/giovanni-guidarini/"}
+  ],
+  "lectureNotes": {
+    "description": "Notes and summaries from the subjects I have studied.",
+    "entries": []
+  }
+}

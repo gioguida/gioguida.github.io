@@ -1,0 +1,301 @@
+# CV_DATA.yaml
+# Primary factual data bank. Extracted entries require manual review.
+
+meta:
+  owner: "Giovanni Guidarini"
+  last_reviewed: ""
+  notes: "Populated from repository CVs. All extracted facts are unverified pending manual review."
+
+personal:
+  full_name: "Giovanni Guidarini"
+  date_of_birth: "14-01-2003"
+  birth_city: "" # Fill in the confirmed city of birth for the bio page.
+  email: "gio.guidarini[at]gmail.com"
+  phone: "+39 373 880 0725"
+  location: "Zurich, Switzerland"
+  linkedin: "www.linkedin.com/in/giovanni-guidarini"
+  github: "https://github.com/gioguida"
+  website: ""
+  sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_RL4F1/main.tex"]
+  verified: true
+
+education:
+  - id: "eth_cse_msc"
+    institution: "ETH Zurich"
+    degree: "MSc in Computational Science and Engineering"
+    location: "Zurich, Switzerland"
+    start: "Sep. 2025"
+    end: "Present"
+    status: "ongoing"
+    specialization: "Computational Physics"
+    grade: "gpa: 5.78/6"
+    thesis: ""
+    relevant_coursework: []
+    tags: [computational_science, engineering, computational_physics]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+  - id: "polimi_mathematical_engineering_bsc"
+    institution: "Politecnico di Milano"
+    degree: "BSc in Mathematical Engineering"
+    location: "Milan, Italy"
+    start: "Sep. 2022"
+    end: "Jul. 2025"
+    status: "completed"
+    specialization: ""
+    grade: "110/110 with Honors"
+    thesis: "Opinion Dynamics in Social Networks with Community Structure"
+    relevant_coursework: []
+    tags: [mathematics, engineering, numerical_methods]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: true
+
+experience:
+  - id: "anima_sgr_ai_intern"
+    organization: "Anima SGR"
+    role: "Artificial Intelligence team intern"
+    location: "Milan, Italy"
+    start: "Jul. 2024"
+    end: "Jul. 2024"
+    status: "completed"
+    summary_facts:
+      - "Independently designed, built, and backtested a sentiment-driven sector-rotation strategy using RavenPack data."
+      - "Built the pipeline from raw data to results in one month."
+      - "Presented findings to the Head of the Quantitative Division and the CFO."
+      - "The strategy was subsequently adopted into the firm's production pipeline."
+    reference_work: "Sector Rotation in European Markets: Leveraging Earnings News and Corporate Controversies" 
+    achievements:
+      - fact: "Backtested on the STOXX 600 equity universe over 2012-2024."
+        metrics: ""
+        tags: [quantitative_finance, backtesting, sentiment_analysis]
+      - fact: "Evaluated linear-weight, quadratic-weight, and volatility-weight portfolio-construction approaches at varying sector concentration levels."
+        metrics: ""
+        tags: [quantitative_finance, portfolio_optimization, backtesting]
+      - fact: "Top-1 sector strategy performance."
+        metrics: "0.50 Sharpe ratio versus 0.31 benchmark; 4.9% annualized excess returns."
+        tags: [quantitative_finance, backtesting]
+    tools: ["RavenPack data", "machine learning", "natural language processing"]
+    tags: [quantitative_finance, sentiment_analysis, machine_learning, natural_language_processing, backtesting, research]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+  - id: "skyward_experimental_rocketry_aerodynamics"
+    organization: "Skyward Experimental Rocketry"
+    role: "Aerodynamics and Flight Dynamics Department Member"
+    location: "Milan, Italy"
+    start: "Sep. 2023"
+    end: "Apr. 2024"
+    status: "completed"
+    summary_facts:
+      - "Member of a student association engineering and building an experimental rocket."
+      - "Researched theoretical work to support software for slender-body aerodynamic approximations."
+      - "Performed mesh-refinement studies for CFD simulations."
+    achievements: []
+    tools: ["Ansys Fluent", "CFD simulation"]
+    tags: [aerospace, aerodynamics, cfd, numerical_simulation, engineering, research]
+    sources: ["cv/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"]
+    verified: false
+
+projects:
+  - id: "particle_track_reconstruction_spin_glass"
+    title: "Particle Track Reconstruction as a Spin-Glass Optimization Problem"
+    organization: "ETH Zurich, Computational Statistical Physics"
+    start: "Spring 2026"
+    end: "Spring 2026"
+    status: "completed"
+    objective: "Reconstruct LHC particle tracks by formulating the task as an Ising-like spin-glass optimization problem."
+    contributions:
+      - "Mapped particle-track reconstruction to an Ising-like spin-glass model with a physics-motivated Hamiltonian."
+      - "Built a C++ simulated-annealing solver minimizing a three-term energy function for alignment, length, and curvature constraints."
+      - "Tuned hyperparameters with Optuna on the Euler cluster."
+    methods: ["Monte Carlo", "simulated annealing", "Ising-like spin-glass model", "hyperparameter optimization"]
+    tools: ["C++", "Python", "Optuna", "Euler cluster"]
+    results: ["85% strict track efficiency on clean events."]
+    outputs: []
+    tags: [particle_physics, optimization, monte_carlo, hpc, parallel_computing, scientific_computing, cplusplus, research]
+    sources: ["cv_cern_math/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+  - id: "ai_sciences_engineering_scientific_ml"
+    title: "AI in the Sciences and Engineering"
+    alternate_titles: ["Deep Learning in Scientific Computing"]
+    organization: "ETH Zurich"
+    start: "Fall 2025"
+    end: "Fall 2025"
+    status: "completed"
+    objective: "Study scientific-machine-learning methods for PDEs, dynamical systems, and irregular geometries."
+    contributions:
+      - "Compared Physics-Informed Neural Networks (PINNs) and data-driven MLPs on a multiscale Poisson equation."
+      - "Used filter normalization and Hessian-eigenvector analysis to examine ill-conditioned PINN loss landscapes and high-frequency training instability."
+      - "Trained a Fourier Neural Operator (FNO) as a neural surrogate for an unknown dynamical system."
+      - "Implemented one-to-one and time-conditional all-to-all FNO training strategies."
+      - "Evaluated FNO resolution invariance and fine-tuned it for transfer learning on out-of-distribution data."
+      - "Extended the Geometry-Aware Operator Transformer (GAOT) with random-sampling tokenization and dynamic KNN-based radius aggregation for irregular geometries on the Elasticity benchmark."
+    methods: ["Physics-Informed Neural Networks", "Fourier Neural Operators", "neural operators", "filter normalization", "Hessian eigenvector analysis", "transfer learning", "KNN-based radius aggregation"]
+    tools: ["PyTorch"]
+    results:
+      - "Identified high-frequency components as inducing ill-conditioned PINN loss landscapes."
+      - "Demonstrated transfer learning to out-of-distribution regimes for the learned neural operator."
+    outputs: []
+    tags: [machine_learning, deep_learning, scientific_computing, numerical_methods, pde, neural_operators, optimization, research]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+  - id: "generative_antibody_design"
+    title: "Generative Antibody Design with Protein Language Models"
+    alternate_titles: ["Generative Antibody Design via Preference Optimization"]
+    organization: "ETH Zurich, Learning & Adaptive Systems Group"
+    supervisors: ["Prof. Andreas Krause", "Scott Sussex"]
+    collaborators: ["Reddy Lab"]
+    start: "Spring 2026"
+    end: ""
+    status: "ongoing"
+    objective: "Train a generative model to propose high-affinity antibody sequences instead of relying on random mutation and scoring."
+    contributions:
+      - "Implemented beam search over the CDRH3 region to use ESM2, a masked protein language model, as a generative model for antibody design."
+      - "Fine-tuned ESM2 via evolutionary fine-tuning and Direct Preference Optimization (DPO / g-DPO) on experimental binding-affinity data."
+      - "Built an end-to-end training and evaluation pipeline using Hydra configurations and Slurm cluster jobs."
+      - "Compared vanilla, evotuned, and DPO-tuned models on pseudo-log-likelihood correlation, generation diversity, and predicted affinity."
+      - "Evaluated generalization of generated candidates at 5, 8, and 11 mutations from wild type."
+    methods: ["protein language models", "beam search", "evolutionary fine-tuning", "Direct Preference Optimization", "out-of-distribution evaluation"]
+    tools: ["ESM2", "PyTorch", "Hydra", "Slurm"]
+    results: ["The frozen base model's pseudo-log-likelihood had no correlation with binding affinity; fine-tuning restored the correlation."]
+    outputs: []
+    data: "Experimental binding data from a double deep mutational scan of the C05 broadly neutralising anti-influenza antibody."
+    notes: "The antibody's CDRH3 loop is described as unusually long (24 residues)."
+    tags: [computational_biology, machine_learning, deep_learning, protein_language_models, optimization, hpc, research]
+    sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+  - id: "opinion_dynamics_community_structure"
+    title: "Opinion Dynamics in Social Networks with Community Structure"
+    organization: "Politecnico di Milano"
+    supervisor: "Prof. C. Piccardi"
+    start: "Spring 2025"
+    end: "Spring 2025"
+    status: "completed"
+    objective: "Study how community structure affects the spread and manipulation of opinions in social networks."
+    contributions: ["Developed mathematical models of opinion diffusion.", "Ran simulations over large networks."]
+    methods: ["mathematical modeling", "network simulation"]
+    tools: []
+    results: []
+    outputs: ["Experimental BSc thesis"]
+    tags: [network_science, mathematical_modeling, simulation, research]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+
+research: []
+
+coursework:
+  completed:
+    - {name: "Probabilistic Artificial Intelligence", institution: "ETH Zurich", term: "", grade: "5.75/6", topics: [], tags: [machine_learning, probabilistic_modeling], sources: ["cv_cern_math/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "AI in the Sciences and Engineering", institution: "ETH Zurich", term: "Fall 2025", grade: "6.0/6", topics: ["scientific machine learning", "Physics-Informed Neural Networks", "Fourier Neural Operators"], tags: [machine_learning, deep_learning, scientific_computing, pde], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex"], verified: false}
+    - {name: "Quantum Mechanics", institution: "Politecnico di Milano", term: "", topics: [], tags: [quantum, physics], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Probability Theory", institution: "Politecnico di Milano", term: "", topics: [], tags: [mathematics, probability], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Statistical Inference", institution: "Politecnico di Milano", term: "", topics: [], tags: [statistics, mathematical_modeling], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Numerical Analysis", institution: "Politecnico di Milano", term: "", topics: [], tags: [numerical_methods, scientific_computing], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Linear Algebra", institution: "Politecnico di Milano", term: "", topics: [], tags: [mathematics], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Partial Differential Equations", institution: "Politecnico di Milano", term: "", topics: [], tags: [pde, numerical_methods, mathematics], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Functional and Complex Analysis", institution: "Politecnico di Milano", term: "", topics: [], tags: [mathematics], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Analysis I-III", institution: "Politecnico di Milano", term: "", topics: [], tags: [mathematics], sources: ["cv/main.tex"], verified: false}
+    - {name: "Quantum Information Processing", institution: "ETH Zurich", term: "", grade: "5.75/6", topics: [], tags: [quantum], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Quantum Information Theory", institution: "ETH Zurich", term: "", grade: "5/6", topics: [], tags: [quantum, information_theory], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Programming Techniques", institution: "ETH Zurich", term: "", grade: "5.25/6", topics: [], tags: [software_engineering, programming], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "HPC Lab", institution: "ETH Zurich", term: "", topics: [], grade: "5.25/6", tags: [hpc, parallel_computing], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Large-Scale Convex Optimization", institution: "ETH Zurich", term: "", grade: "6.0/6", topics: [], tags: [optimization], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Computational Statistical Physics", institution: "ETH Zurich", term: "", grade: "6.0/6", topics: [], tags: [statistical_physics, scientific_computing, monte_carlo], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  ongoing:
+    - {name: "VLSI 1: HDL-Based Design for FPGAs", institution: "ETH Zurich", term: "", topics: [], tags: [fpga, hdl, digital_design, hardware], sources: ["cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+    - {name: "Embedded Systems", institution: "ETH Zurich", term: "", topics: [], tags: [embedded, hardware, electronics], sources: ["cv_cern_math/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+    - {name: "Discrete-time Signal Processing", institution: "ETH Zurich", term: "", topics: [], tags: [signal_processing], sources: ["cv_cern_math/main.tex"], verified: false}
+    - {name: "Quantum Error Correction", institution: "ETH Zurich", term: "", topics: [], tags: [quantum], sources: ["cv_cern_math/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+  status_unspecified:
+    
+
+skills:
+  programming_languages:
+    - {name: "Python", tags: [programming, scientific_computing, machine_learning], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "C++", tags: [programming, performance_computing], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "C", tags: [programming, systems], sources: ["cv/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "CUDA", tags: [gpu_computing, parallel_computing], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Fortran", tags: [scientific_computing], sources: ["cv_cern_math/main.tex"], verified: false}
+    - {name: "MATLAB", tags: [numerical_methods, scientific_computing], sources: ["cv/main.tex", "cv_deepmind_student_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "Bash", tags: [scripting, software_engineering], sources: ["cv_deepmind_student_research/main.tex"], verified: false}
+  hardware_and_embedded: []
+  hpc_and_parallel:
+    - {name: "MPI", tags: [hpc, parallel_computing], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+    - {name: "OpenMP", tags: [hpc, parallel_computing], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+    - {name: "Slurm", tags: [hpc, cluster_computing], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  machine_learning:
+    - {name: "PyTorch", tags: [machine_learning, deep_learning], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Physics-Informed Neural Networks", tags: [machine_learning, deep_learning, scientific_computing, pde], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Fourier Neural Operators", tags: [machine_learning, deep_learning, scientific_computing, neural_operators], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Direct Preference Optimization", tags: [machine_learning, deep_learning, optimization, computational_biology], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  numerical_methods:
+    - {name: "Monte Carlo and simulated annealing", tags: [optimization, monte_carlo, scientific_computing], sources: ["cv_cern_math/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Computational fluid dynamics mesh refinement", tags: [cfd, numerical_methods, aerodynamics], sources: ["cv/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+  scientific_computing:
+    - {name: "NumPy", tags: [scientific_computing, python], sources: ["cv/main.tex", "cv_deepmind_student_research/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "pandas", tags: [data_analysis, python], sources: ["cv/main.tex"], verified: false}
+    - {name: "SciPy", tags: [scientific_computing, python], sources: ["cv_las_semestral_project/main.tex"], verified: false}
+  tools_and_frameworks:
+    - {name: "Git", tags: [software_engineering, version_control], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Make", tags: [build_tools, software_engineering], sources: ["cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "CMake", tags: [build_tools, software_engineering], sources: ["cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "Hydra", tags: [machine_learning, experiment_management], sources: ["cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex"], verified: false}
+    - {name: "Optuna", tags: [optimization, hyperparameter_optimization], sources: ["cv_cern_math/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "Ansys Fluent", tags: [cfd, numerical_simulation, aerodynamics], sources: ["cv/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+    - {name: "RavenPack", tags: [quantitative_finance, sentiment_analysis, data], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  operating_systems:
+    - {name: "Linux", tags: [operating_systems, hpc], sources: ["cv_cern_math/main.tex", "cv_IBM_research/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  languages_spoken:
+    - {name: "Italian", proficiency: "Native", tags: [spoken_language], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+    - {name: "English", proficiency: "IELTS 8 - C1", tags: [spoken_language], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+
+awards_and_honors:
+  - {title: "First place out of 851 applicants in a high-school admission test", date: "", organization: "", tags: [academic_achievement], sources: ["cv/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+  - {title: "Tuition-fee exemption scholarship", date: "2025", organization: "", tags: [scholarship], sources: ["cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"], verified: false}
+  - title: "Member of the Italian National Board of Excellences (Albo nazionale delle Eccellenze)"
+    date: "2019"
+    organization: "Italian Ministry of Public Education"
+    details: "Awarded for mathematical competitions in high school."
+    tags: [mathematics, academic_achievement]
+    sources: ["cv/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex"]
+    verified: false
+  - {title: "Captain of the winning team in Matematica senza frontiere", date: "2019", organization: "", details: "National mathematics competition.", tags: [mathematics, leadership, competition], sources: ["cv/main.tex"], verified: false}
+  - {title: "Regional finalist in a mathematical competition", date: "", organization: "", details: "Achieved as a high-school freshman.", tags: [mathematics, competition], sources: ["cv/main.tex"], verified: false}
+
+publications_and_presentations: []
+
+leadership_and_activities:
+  - {type: "membership", organization: "AIM -- Association of Mathematical Engineers", role: "Member", dates: "", tags: [mathematics, engineering], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  - {type: "volunteering", organization: "Mutuo Soccorso Milano", role: "Volunteer", dates: "", details: "Assistance to homeless people and food distribution.", tags: [volunteering, community_service], sources: ["cv/main.tex"], verified: false}
+  - {type: "athletics", organization: "", role: "Former competitive rugby player", dates: "", tags: [sports], sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"], verified: false}
+  - type: "interests"
+    organization: ""
+    role: "Interests"
+    dates: ""
+    details: ["Mathematics", "Physics", "Machine Learning for Science", "Motorsports", "Art", "History and Literature", "Information Theory (Shannon and Quantum)", "Algorithms"]
+    tags: [interests]
+    sources: ["cv/main.tex", "cv_cern_math/main.tex", "cv_deepmind_student_research/main.tex", "cv_IBM_research/main.tex", "cv_jane_street/main.tex", "cv_las_semestral_project/main.tex", "cv_optimized/main.tex", "cv_research_assistant/main.tex", "cv_RL4F1/main.tex"]
+    verified: false
+
+application_notes:
+  target_directions: []
+  avoid_claiming: []
+  preferred_positioning: []
+
+fact_conflicts:
+  - topic: "Location"
+    source_a: "cv/main.tex"
+    value_a: "Milan, Italy"
+    source_b: "cv_cern_math/main.tex"
+    value_b: "Zurich, Switzerland"
+    resolution: ""
+  - topic: "MSc GPA"
+    source_a: "cv_jane_street/main.tex"
+    value_a: "5.5/6"
+    source_b: "cv_optimized/main.tex"
+    value_b: "5.78/6"
+    resolution: ""
+  - topic: "Spring 2026 ETH coursework status"
+    source_a: "cv_deepmind_student_research/main.tex"
+    value_a: "Computational and Statistical Aspects of Diffusion Models, Large-Scale Convex Optimization, HPC Lab, and Computational Statistical Physics were planned for Spring 2026."
+    source_b: "cv_cern_math/main.tex"
+    value_b: "Embedded Systems, HDL-Based Design for FPGAs, Discrete-time Signal Processing, and Quantum Error Correction were ongoing coursework; other Spring 2026 coursework was listed without a status."
+    resolution: ""

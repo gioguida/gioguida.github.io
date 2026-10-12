@@ -1,0 +1,47 @@
+{
+  "colors": {
+    "background": "#fdf6e3",
+    "backgroundSecondary": "#eee8d5",
+    "surface": "rgba(255, 255, 255, .55)",
+    "textPrimary": "#002b36",
+    "textSecondary": "#657b83",
+    "textMuted": "#586e75",
+    "accent": "#268bd2",
+    "accentWarm": "#cb4b16",
+    "border": "#eee8d5",
+    "selection": "#b58900"
+  },
+  "typography": {
+    "primaryFont": "Oranienbaum",
+    "monoFont": "ui-monospace, SFMono-Regular, Consolas, monospace",
+    "headingWeight": "400",
+    "bodySize": "1.05rem",
+    "smallSize": ".84rem",
+    "bodyLineHeight": "1.58",
+    "headingLineHeight": ".98"
+  },
+  "geometry": {
+    "pageMaxWidth": "1120px",
+    "pageGutter": "48px",
+    "contentWidth": "730px",
+    "cardRadius": "22px",
+    "controlRadius": "999px",
+    "cardPadding": "27px",
+    "gridGap": "18px",
+    "sectionSpacing": "100px",
+    "bioSectionSpacing": "40px",
+    "bioHeroWidth": "930px",
+    "bioPhotoWidth": "370px",
+    "bioPhotoMobileWidth": "clamp(96px, 28vw, 150px)",
+    "bioPhotoAspectRatio": "9 / 10",
+    "bioPhotoTopOffset": "-20px"
+  },
+  "effects": {
+    "shadow": "0 18px 48px rgba(0, 43, 54, .10)",
+    "transition": ".2s ease",
+    "blur": "10px"
+  },
+  "responsive": {
+    "mobileBreakpoint": "760px"
+  }
+}
