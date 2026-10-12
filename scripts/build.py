@@ -63,7 +63,7 @@ def validate(site, project_data, cv):
         if not pid or pid in seen:
             errors.append(f"data/projects.json: duplicate or missing project id {pid!r}")
         seen.add(pid)
-        for field in ("slug", "title", "shortDescription", "date", "order", "image", "imageAlt", "tags", "overview", "links"):
+        for field in ("slug", "title", "shortDescription", "date", "order", "overview", "links"):
             if field not in project:
                 errors.append(f"project {pid!r} is missing required field {field!r}")
         if pid not in cv_projects:
@@ -131,7 +131,7 @@ def bio_page(site, cv):
     personal = cv["personal"]
     bio = site["bio"]
     labels = bio["labels"]
-    birthdate = datetime.strptime(personal["date_of_birth"], "%d-%m-%Y").strftime("%-d %B %Y")
+    birthdate = datetime.strptime(personal["date_of_birth"], "%d-%m-%Y").strftime("%d %B %Y").lstrip("0")
     birth_city = personal.get("birth_city") or "Milan, Italy"
     education = "\n".join(cv_entry(item, item["institution"], item["degree"]) for item in cv["education"])
     experience_by_id = {item["id"]: item for item in cv.get("experience", [])}
@@ -140,7 +140,7 @@ def bio_page(site, cv):
 <body>{nav(site, "bio")}
 <main class="page subpage bio-page">
   <header class="bio-hero">
-    <div class="bio-intro"><p class="eyebrow">{esc(bio['eyebrow'])}</p><h1>{esc(bio['title'])}</h1><h2>{esc(personal['full_name'])}</h2>
+    <div class="bio-intro"><h2>{esc(personal['full_name'])}</h2>
       <dl class="bio-facts"><div><dt>{esc(labels['birthDate'])}</dt><dd>{esc(birthdate)}</dd></div><div><dt>{esc(labels['birthCity'])}</dt><dd>{esc(birth_city)}</dd></div><div><dt>{esc(labels['currentCity'])}</dt><dd>{esc(personal['location'])}</dd></div></dl>
       <a class="download" href="{esc(bio['cvFile'])}" download>{esc(labels['downloadCv'])}</a>
     </div>
@@ -154,9 +154,8 @@ def bio_page(site, cv):
 
 def project_index(projects):
     rows = []
-    for number, project in enumerate(sorted(projects, key=lambda x: x["order"]), 1):
+    for project in sorted(projects, key=lambda x: x["order"]):
         rows.append(f'''<a class="publication" href="projects/{esc(project['slug'])}.html">
-  <span class="publication-number">{number:02d}</span>
   <div><h2>{esc(project['title'])}</h2><p class="muted">{esc(project['shortDescription'])}</p><span class="meta">{esc(project['date'])}</span></div>
 </a>''')
     return "\n".join(rows)
@@ -169,12 +168,13 @@ def detail_page(site, project):
         buttons.append(f'<a class="download" href="{esc(prefix + href if not href.startswith("http") else href)}">{esc(label)}</a>')
     sidebar = "".join(f'<strong>{esc(item["heading"])}</strong><p class="muted">{item["body"]}</p>' for item in project.get("sidebar", []))
     body = "".join(f"<p>{esc(paragraph)}</p>" for paragraph in project["overview"])
+    image = f'<img class="project-image project-photo" src="{esc(prefix + project["image"])}" alt="{esc(project["imageAlt"])}">' if project.get("image") else ""
     return f'''{head(site, project['title'], project['shortDescription'], prefix, 'projects/' + project['slug'] + '.html')}
 <body>
 {nav(site, "projects", prefix)}
 <main class="page subpage">
-  <div class="detail-hero"><div><p class="eyebrow">{esc(project['date'])}</p><h1>{esc(project['title'])}</h1><p class="lede">{esc(project['shortDescription'])}</p>{''.join(buttons)}</div><img class="project-image project-photo" src="{esc(prefix + project['image'])}" alt="{esc(project['imageAlt'])}"></div>
-  <div class="detail-body"><div><h2>Overview</h2>{body}<p>{tags(project['tags'])}</p></div><aside class="side-note">{sidebar}{buttons[-1] if buttons else ''}</aside></div>
+  <div class="detail-hero{' detail-hero--text-only' if not image else ''}"><div><p class="eyebrow">{esc(project['date'])}</p><h1>{esc(project['title'])}</h1><p class="lede">{esc(project['shortDescription'])}</p>{''.join(buttons)}</div>{image}</div>
+  <div class="detail-body"><div><h2>Overview</h2>{body}</div><aside class="side-note">{sidebar}</aside></div>
 </main>
 {footer(site, prefix, back=True)}
 </body></html>
@@ -200,7 +200,7 @@ def build(force=False, page=None):
         "bio.html": bio_page(site, cv),
         "projects.html": f'''{head(site, "Projects — " + owner, "Selected projects by " + owner, canonical_path="projects.html")}
 <body>{nav(site, "projects")}
-<main class="page subpage"><div class="intro"><p class="eyebrow">01 / selected work</p><h1>Projects</h1><p class="lede">Selected work in scientific computing, machine learning, and computational physics.</p></div><section class="publication-list">{project_index(projects)}</section></main>
+<main class="page subpage"><div class="intro"><h1>Projects</h1></div><section class="publication-list">{project_index(projects)}</section></main>
 {footer(site)}</body></html>''',
         "lecture-notes.html": f'''{head(site, "Lecture notes — " + owner, site["lectureNotes"]["description"], canonical_path="lecture-notes.html")}
 <body>{nav(site, "lecture-notes")}
@@ -275,6 +275,7 @@ def generate_stylesheet(theme):
   --space-grid: {geometry["gridGap"]};
   --space-section: {geometry["sectionSpacing"]};
   --space-bio-section: {geometry["bioSectionSpacing"]};
+  --subpage-width: {geometry["subpageWidth"]};
   --bio-hero-width: {geometry["bioHeroWidth"]};
   --bio-photo-width: {geometry["bioPhotoWidth"]};
   --bio-photo-mobile-width: {geometry["bioPhotoMobileWidth"]};

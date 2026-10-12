@@ -35,6 +35,7 @@
   --space-grid: 18px;
   --space-section: 100px;
   --space-bio-section: 40px;
+  --subpage-width: 930px;
   --bio-hero-width: 930px;
   --bio-photo-width: 370px;
   --bio-photo-mobile-width: clamp(96px, 28vw, 150px);
@@ -114,7 +115,7 @@ h3 { font-size: 1.3rem; letter-spacing: -.03em; line-height: 1.05; }
 .footer-links a:hover { color: var(--blue); }
 .footer span { color: var(--orange); }
 
-.subpage { padding: 160px 0 90px; }
+.subpage { max-width: var(--subpage-width); padding: 160px 0 90px; }
 .bio-page { padding-left: 8px; }
 .subpage .intro { max-width: 730px; margin-bottom: 60px; }
 .project-art { height: 165px; margin: -27px -27px 25px; padding: 20px; overflow: hidden; border-radius: 21px 21px 0 0; background: var(--base2); }
@@ -177,7 +178,6 @@ img[src*="aise/comparative-loss-landscapes"] { object-fit: contain; background: 
   .section-heading p { margin-top: 18px; }
   .subpage { padding-top: 130px; }
   .bio-hero { grid-template-columns: 1fr; gap: 18px; align-items: start; }
-  .bio-intro h1 { font-size: clamp(2.5rem, 9vw, 3.8rem); }
   .bio-facts { margin-top: 22px; }
   .bio-facts div { grid-template-columns: 1fr; gap: 0; padding: 9px 0; }
   .bio-photo { width: min(100%, 220px); margin-top: 18px; }

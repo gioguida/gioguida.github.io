@@ -30,6 +30,7 @@
     "gridGap": "18px",
     "sectionSpacing": "100px",
     "bioSectionSpacing": "40px",
+    "subpageWidth": "930px",
     "bioHeroWidth": "930px",
     "bioPhotoWidth": "370px",
     "bioPhotoMobileWidth": "clamp(96px, 28vw, 150px)",

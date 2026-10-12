@@ -8,10 +8,7 @@
       "date": "Semester project · spring 2026",
       "order": 10,
       "featured": true,
-      "image": "media/projects/plm-antibody-design/0dYECOEFeLCSLwo5KSYAI.png",
-      "imageAlt": "Molecular rendering of the C05 antibody protein complex",
       "links": {"report": "media/projects/plm-antibody-design/report.pdf"},
-      "tags": ["antibody design", "protein language models", "DPO", "LoRA"],
       "overview": [
         "This semester project investigates whether a pretrained protein language model can become a useful proposal model for C05 antibody design. The focus is the 24-amino-acid CDR-H3 loop, which drives the antibody's interaction with the influenza hemagglutinin receptor-binding site.",
         "Starting from ESM2, I first performed domain-adaptive pretraining on human heavy-chain sequences from the Observed Antibody Space. I then applied Direct Preference Optimization (DPO) to deep-mutational-scanning measurements, teaching the model to prefer C05 variants with stronger binding enrichment. Full-parameter and LoRA-based adaptation were compared, followed by candidate generation with Gibbs sampling and stochastic beam search.",
@@ -20,7 +17,7 @@
       "sidebar": [
         {"heading": "Authors", "body": "Giovanni Guidarini<br>Marco De Negri"},
         {"heading": "Supervision", "body": "Prof. Dr. Andreas Krause<br>Dr. Scott Sussex"},
-        {"heading": "Course", "body": "<em>Learning and Adaptive Systems</em><br>ETH Zürich · Spring 2026"}
+        {"heading": "Group", "body": "<em>Learning and Adaptive Systems</em><br>ETH Zürich · Spring 2026"}
       ]
     },
     {
@@ -33,8 +30,7 @@
       "featured": true,
       "image": "media/projects/particle-track/cern_detector.png",
       "imageAlt": "Simulated particle detector and reconstructed tracks",
-      "links": {"presentation": "media/projects/particle-track/presentation.pdf", "report": "media/projects/particle-track/report.pdf", "course": "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199070&semkez=2026S&ansicht=ALLE&lang=en"},
-      "tags": ["spin-glass optimisation", "simulated annealing", "C++", "Python"],
+      "links": {"presentation": "media/projects/particle-track/presentation.pdf", "report": "media/projects/particle-track/report.pdf"},
       "overview": [
         "We studied particle-track reconstruction in a simplified two-dimensional detector. Candidate track segments were represented as binary variables in an Ising-like Hamiltonian, with interaction terms encoding alignment, curvature consistency, forks, merges, and other geometric constraints. The resulting energy-minimisation problem was solved using Metropolis-Hastings simulated annealing.",
         "The detector model contained five concentric layers and twenty simulated particles per event, with Gaussian measurement noise and Poisson-distributed fake hits. The simulation kernel was implemented in C++, while the analysis and visualisation were carried out in Python. Hyperparameters were tuned with Bayesian optimisation using Optuna on the Euler cluster.",
@@ -55,8 +51,7 @@
       "featured": true,
       "image": "media/projects/aise/comparative-loss-landscapes.png",
       "imageAlt": "Comparison of PINN and data-driven loss landscapes",
-      "links": {"report": "media/projects/aise/report.pdf", "course": "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=194859&semkez=2025W&ansicht=ALLE&lang=en"},
-      "tags": ["PINNs", "Fourier neural operators", "scientific machine learning", "PyTorch"],
+      "links": {"report": "media/projects/aise/report.pdf"},
       "overview": [
         "The project examined three applications of machine learning to scientific computing. First, physics-informed and data-driven multilayer perceptrons were compared on the Poisson equation, with particular attention to their loss landscapes as problem complexity increased.",
         "Second, a Fourier neural operator was trained to approximate an unknown dynamical system. The model was evaluated across spatial resolutions, trained on multiple time-step pairs, and fine-tuned on an unseen distribution. Third, a geometry-aware operator transformer was tested on an elasticity problem using random token sampling and a dynamic-radius neighbourhood strategy.",
