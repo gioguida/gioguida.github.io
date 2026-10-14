@@ -92,7 +92,7 @@ def head(site, page_title, description, prefix="", canonical_path=""):
   <meta name="author" content="{esc(site['title'].split(' — ')[0])}">
   <link rel="canonical" href="{esc(site['url'])}/{esc(canonical_path)}">
   <link rel="stylesheet" href="{prefix}style.css">
-  <link rel="icon" type="image/x-icon" href="{prefix}favicon.ico?v=4">
+  <link rel="icon" type="image/x-icon" href="{prefix}favicon.ico?v=5">
 </head>'''
 
 
