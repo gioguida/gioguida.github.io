@@ -28,8 +28,6 @@
       "date": "Course project · spring 2026",
       "order": 20,
       "featured": true,
-      "image": "media/projects/particle-track/cern_detector.png",
-      "imageAlt": "Simulated particle detector and reconstructed tracks",
       "links": {"presentation": "media/projects/particle-track/presentation.pdf", "report": "media/projects/particle-track/report.pdf"},
       "overview": [
         "We studied particle-track reconstruction in a simplified two-dimensional detector. Candidate track segments were represented as binary variables in an Ising-like Hamiltonian, with interaction terms encoding alignment, curvature consistency, forks, merges, and other geometric constraints. The resulting energy-minimisation problem was solved using Metropolis-Hastings simulated annealing.",

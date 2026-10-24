@@ -93,6 +93,7 @@ def head(site, page_title, description, prefix="", canonical_path=""):
   <link rel="canonical" href="{esc(site['url'])}/{esc(canonical_path)}">
   <link rel="stylesheet" href="{prefix}style.css">
   <link rel="icon" type="image/x-icon" href="{prefix}favicon.ico?v=5">
+  <script src="{prefix}theme.js" defer></script>
 </head>'''
 
 
@@ -100,7 +101,7 @@ def nav(site, current, prefix=""):
     links = []
     for item in site["navigation"]:
         links.append(f'<a href="{prefix}{esc(item["href"])}"' + (f' aria-current="page"' if item["key"] == current else "") + f'>{esc(item["label"])}</a>')
-    return '<nav class="site-nav" aria-label="Main navigation">' + "".join(links) + "</nav>"
+    return '<nav class="site-nav" aria-label="Main navigation">' + "".join(links) + '</nav><button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">dark</button>'
 
 
 def footer(site, prefix="", back=False):
@@ -121,8 +122,7 @@ def cv_dates(item):
 
 def cv_entry(item, title, subtitle):
     return f'''<li class="cv-entry">
-  <span class="cv-entry-date">{esc(cv_dates(item))}</span>
-  <div><h3>{esc(title)}</h3><p>{esc(subtitle)}</p><span class="muted">{esc(item.get('location', ''))}</span></div>
+  <div><h3>{esc(title)}</h3><p>{esc(subtitle)}</p><span class="muted">{esc(item.get('location', ''))} · {esc(cv_dates(item))}</span></div>
 </li>'''
 
 
@@ -141,7 +141,7 @@ def bio_page(site, cv):
   <header class="bio-hero">
     <div class="bio-intro"><h2>{esc(personal['full_name'])}</h2>
       <dl class="bio-facts"><div><dt>{esc(labels['birthDate'])}</dt><dd>{esc(birthdate)}</dd></div><div><dt>{esc(labels['birthCity'])}</dt><dd>{esc(birth_city)}</dd></div><div><dt>{esc(labels['currentCity'])}</dt><dd>{esc(personal['location'])}</dd></div></dl>
-      <a class="download" href="{esc(bio['cvFile'])}" download>{esc(labels['downloadCv'])}</a>
+      <a class="download" href="{esc(bio['cvFile'])}">{esc(labels['downloadCv'])}</a>
     </div>
     <img class="bio-photo" src="{esc(bio['photo'])}" alt="{esc(bio['photoAlt'])}">
   </header>
@@ -165,15 +165,15 @@ def detail_page(site, project):
     buttons = []
     for label, href in project["links"].items():
         buttons.append(f'<a class="download" href="{esc(prefix + href if not href.startswith("http") else href)}">{esc(label)}</a>')
-    sidebar = "".join(f'<strong>{esc(item["heading"])}</strong><p class="muted">{item["body"]}</p>' for item in project.get("sidebar", []))
+    sidebar = "".join(f'<div class="project-meta-item"><strong>{esc(item["heading"])}</strong><p class="muted">{item["body"]}</p></div>' for item in project.get("sidebar", []))
     body = "".join(f"<p>{esc(paragraph)}</p>" for paragraph in project["overview"])
     image = f'<img class="project-image project-photo" src="{esc(prefix + project["image"])}" alt="{esc(project["imageAlt"])}">' if project.get("image") else ""
     return f'''{head(site, project['title'], project['shortDescription'], prefix, 'projects/' + project['slug'] + '.html')}
 <body>
 {nav(site, "projects", prefix)}
 <main class="page subpage">
-  <div class="detail-hero{' detail-hero--text-only' if not image else ''}"><div><p class="eyebrow">{esc(project['date'])}</p><h1>{esc(project['title'])}</h1><p class="lede">{esc(project['shortDescription'])}</p>{''.join(buttons)}</div>{image}</div>
-  <div class="detail-body"><div><h2>Overview</h2>{body}</div><aside class="side-note">{sidebar}</aside></div>
+  <div class="detail-hero{' detail-hero--text-only' if not image else ''}"><div><p class="eyebrow">{esc(project['date'])}</p><h1>{esc(project['title'])}</h1><p class="lede">{esc(project['shortDescription'])}</p><div class="project-actions">{''.join(buttons)}</div></div>{image}</div>
+  <div class="detail-body"><div class="project-meta">{sidebar}</div><div class="project-overview"><h2>Overview</h2>{body}</div></div>
 </main>
 {footer(site, prefix, back=True)}
 </body></html>
@@ -231,6 +231,8 @@ def write_output(path, content, force):
 def generate_stylesheet(theme):
     """Keep the CSS font import and legacy variables mapped to theme.json."""
     colors = theme["colors"]
+    dark_colors = theme["darkMode"]["colors"]
+    dark_shadow = theme["darkMode"]["shadow"]
     typography = theme["typography"]
     geometry = theme["geometry"]
     effects = theme["effects"]
@@ -259,11 +261,13 @@ def generate_stylesheet(theme):
   --color-text-muted: {colors["textMuted"]};
   --color-accent: {colors["accent"]};
   --color-border: {colors["border"]};
+  --download-button: {colors["downloadButton"]};
   --shadow: {effects["shadow"]};
   --font-display: "{font_name}", Didot, "Bodoni 72", "Times New Roman", serif;
   --font-text: "{font_name}", Iowan Old Style, Baskerville, Georgia, serif;
   --font-mono: {typography["monoFont"]};
   --font-weight-heading: {typography["headingWeight"]};
+  --font-scale: {typography["scale"]};
   --font-size-body: {typography["bodySize"]};
   --font-size-small: {typography["smallSize"]};
   --page-max-width: {geometry["pageMaxWidth"]};
@@ -280,12 +284,31 @@ def generate_stylesheet(theme):
   --bio-photo-mobile-width: {geometry["bioPhotoMobileWidth"]};
   --bio-photo-aspect-ratio: {geometry["bioPhotoAspectRatio"]};
   --bio-photo-top-offset: {geometry["bioPhotoTopOffset"]};
+  --bio-photo-fixed-top: {geometry["bioPhotoFixedTop"]};
   --transition: {effects["transition"]};
   --blur: {effects["blur"]};
+}}'''
+    dark_variables = f'''[data-theme="dark"] {{
+  --base03: {dark_colors["textPrimary"]};
+  --base01: {dark_colors["textMuted"]};
+  --base00: {dark_colors["textSecondary"]};
+  --base0: #657b83;
+  --base2: {dark_colors["backgroundSecondary"]};
+  --base3: {dark_colors["background"]};
+  --color-background: {dark_colors["background"]};
+  --color-surface: {dark_colors["surface"]};
+  --color-text-primary: {dark_colors["textPrimary"]};
+  --color-text-secondary: {dark_colors["textSecondary"]};
+  --color-text-muted: {dark_colors["textMuted"]};
+  --color-border: {dark_colors["border"]};
+  --download-button: {dark_colors["downloadButton"]};
+  --orange: {dark_colors["accentWarm"]};
+  --shadow: {dark_shadow};
 }}'''
     stylesheet = (ROOT / "style.css").read_text(encoding="utf-8")
     stylesheet = re.sub(r"\A@import[^\n]*;", lambda match: f"@import url('{font_url}');", stylesheet, count=1)
     stylesheet = re.sub(r"\A(@import[^\n]*;\n\n):root\s*\{.*?\}\n\n", lambda match: match.group(1) + variables + "\n\n", stylesheet, count=1, flags=re.S)
+    stylesheet = re.sub(r'\[data-theme="dark"\]\s*\{.*?\}\n\n', dark_variables + "\n\n", stylesheet, count=1, flags=re.S)
     stylesheet = stylesheet.replace("@media (max-width: 760px)", f"@media (max-width: {responsive['mobileBreakpoint']})")
     # CSS is intentionally preserved during the normal validation build too.
     # The caller regenerates it only when explicitly requesting --force.
