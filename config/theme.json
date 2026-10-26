@@ -17,7 +17,7 @@
       "background": "#231727",
       "backgroundSecondary": "#35203a",
       "surface": "rgba(53, 32, 58, .72)",
-      "textPrimary": "#fdf6e3",
+      "textPrimary": "#d7c6dc",
       "textSecondary": "#839496",
       "textMuted": "#93a1a1",
       "accentWarm": "#b4a7b7",
@@ -52,7 +52,8 @@
     "bioPhotoMobileWidth": "clamp(96px, 28vw, 150px)",
     "bioPhotoAspectRatio": "9 / 10",
     "bioPhotoTopOffset": "0",
-    "bioPhotoFixedTop": "160px"
+    "bioPhotoFixedTop": "160px",
+    "bioPhotoHorizontalBias": "70px"
   },
   "effects": {
     "shadow": "0 18px 48px rgba(0, 43, 54, .10)",

@@ -101,7 +101,7 @@ def nav(site, current, prefix=""):
     links = []
     for item in site["navigation"]:
         links.append(f'<a href="{prefix}{esc(item["href"])}"' + (f' aria-current="page"' if item["key"] == current else "") + f'>{esc(item["label"])}</a>')
-    return '<nav class="site-nav" aria-label="Main navigation">' + "".join(links) + '</nav><button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">dark</button>'
+    return '<nav class="site-nav" aria-label="Main navigation">' + "".join(links) + '</nav><button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾</button>'
 
 
 def footer(site, prefix="", back=False):
@@ -187,7 +187,11 @@ def build(force=False, page=None):
     with (ROOT / "CV_DATA.yaml").open(encoding="utf-8") as stream:
         cv = yaml.safe_load(stream)
     validate(site, project_data, cv)
-    generate_stylesheet(theme)
+    stylesheet = generate_stylesheet(theme)
+    stylesheet_path = ROOT / "style.css"
+    if not stylesheet_path.exists() or stylesheet_path.read_text(encoding="utf-8") != stylesheet:
+        stylesheet_path.write_text(stylesheet, encoding="utf-8")
+        print("Generated style.css")
     projects = project_data["projects"]
     owner = cv["personal"]["full_name"]
 
@@ -285,6 +289,7 @@ def generate_stylesheet(theme):
   --bio-photo-aspect-ratio: {geometry["bioPhotoAspectRatio"]};
   --bio-photo-top-offset: {geometry["bioPhotoTopOffset"]};
   --bio-photo-fixed-top: {geometry["bioPhotoFixedTop"]};
+  --bio-photo-horizontal-bias: {geometry["bioPhotoHorizontalBias"]};
   --transition: {effects["transition"]};
   --blur: {effects["blur"]};
 }}'''
@@ -349,8 +354,4 @@ if __name__ == "__main__":
     parser.add_argument("--page", help="regenerate one top-level HTML page without touching other pages")
     parser.add_argument("--styles", action="store_true", help="update style.css from theme.json without overwriting HTML")
     arguments = parser.parse_args()
-    if (arguments.force and not arguments.page) or arguments.styles:
-        stylesheet = generate_stylesheet(load_json(ROOT / "config/theme.json"))
-        (ROOT / "style.css").write_text(stylesheet, encoding="utf-8")
-        print("Generated style.css")
     build(force=arguments.force, page=arguments.page)
