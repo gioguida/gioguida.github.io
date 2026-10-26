@@ -18,7 +18,7 @@
       "backgroundSecondary": "#35203a",
       "surface": "rgba(53, 32, 58, .72)",
       "textPrimary": "#d7c6dc",
-      "textSecondary": "#839496",
+      "textSecondary": "#d7c6dc",
       "textMuted": "#93a1a1",
       "accentWarm": "#b4a7b7",
       "downloadButton": "#35203a",

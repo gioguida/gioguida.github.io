@@ -52,14 +52,14 @@
 [data-theme="dark"] {
   --base03: #d7c6dc;
   --base01: #93a1a1;
-  --base00: #839496;
+  --base00: #d7c6dc;
   --base0: #657b83;
   --base2: #35203a;
   --base3: #231727;
   --color-background: #231727;
   --color-surface: rgba(53, 32, 58, .72);
   --color-text-primary: #d7c6dc;
-  --color-text-secondary: #839496;
+  --color-text-secondary: #d7c6dc;
   --color-text-muted: #93a1a1;
   --color-border: #4b3150;
   --download-button: #35203a;
