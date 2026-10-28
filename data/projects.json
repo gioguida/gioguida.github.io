@@ -1,6 +1,26 @@
 {
   "projects": [
     {
+      "id": "fpga_poisson_solver",
+      "slug": "FPGA-Poisson-Solver",
+      "title": "FPGA Poisson Solver with Conjugate Gradient",
+      "shortDescription": "Building a fixed-point FPGA solver for the 2D Poisson equation using matrix-free Conjugate Gradient.",
+      "date": "Ongoing project · 2026",
+      "order": 0,
+      "featured": true,
+      "links": {"github": "https://github.com/gioguida/FPGA-Poisson-Solver"},
+      "overview": [
+        "I am developing an FPGA accelerator for the two-dimensional Poisson equation. A five-point finite-difference stencil produces a linear system solved with Conjugate Gradient. The planned hardware computes each matrix–vector product directly from neighboring grid values, avoiding storage of a sparse matrix. A fixed iteration count is intended to make execution time predictable.",
+        "So far, I have built a C++ floating-point reference solver, a software fixed-point model, and SystemVerilog modules for arithmetic, AXPY operations, dot products, packed memory, neighborhood fetching, and the Poisson stencil. RTL testbenches compare several blocks with generated reference vectors, including stencil configurations with different memory lane counts.",
+        "In a software study of four 16 × 16 cases over 20 Conjugate Gradient iterations, Q8.24 produced the lowest mean relative L2 error against the floating-point solution among Q16.16, Q12.20, and Q8.24: 3.55 × 10⁻⁵, with no detected arithmetic overflows. This is a software-model result, not an FPGA performance measurement. The complete hardware controller and end-to-end solver are planned; board-level accuracy, timing, cycle count, and resource use remain to be measured."
+      ],
+      "sidebar": [
+        {"heading": "Status", "body": "In progress"},
+        {"heading": "Tools", "body": "SystemVerilog<br>C++<br>Fixed-point arithmetic"},
+        {"heading": "Target", "body": "Zybo-class FPGA"}
+      ]
+    },
+    {
       "id": "generative_antibody_design",
       "slug": "ML4proteins",
       "title": "Adapting Protein Language Models for Generative C05 CDR-H3 Design",
@@ -57,6 +77,26 @@
       ],
       "sidebar": [
         {"heading": "Course", "body": "<em>AI in the Sciences and Engineering</em><br>ETH Zürich · Fall 2025"}
+      ]
+    },
+    {
+      "id": "opinion_dynamics_community_structure",
+      "slug": "bachelor-thesis",
+      "title": "Opinion Dynamics in Social Networks with Community Structure",
+      "shortDescription": "Studying how community structure shapes consensus, polarization, and fragmentation in simulated social networks.",
+      "date": "Bachelor's thesis · 2025",
+      "order": 40,
+      "featured": true,
+      "links": {"thesis": "media/projects/bachelor-thesis/TESI_Definitiva.pdf"},
+      "overview": [
+        "This bachelor thesis studies how the community structure of a social network affects the evolution of its users' opinions. We generated synthetic networks with the Lancichinetti–Fortunato–Radicchi (LFR) benchmark and simulated opinion updates with a weighted Hegselmann–Krause model, in which agents interact within a bounded confidence range and influence is tied to network structure.",
+        "The experiments were implemented in MATLAB. We generated 2,000 networks across ten levels of community mixing and ran 50,000 simulations across different confidence thresholds. We then examined the final number of opinion clusters, outliers, opinion distributions within communities, and the iterations needed for convergence.",
+        "Stronger community structure widened the range of conditions that produced fragmented opinions and sharply narrowed the intermediate polarization regime. In the simulations, highly separated communities could move from fragmentation to consensus without a broad polarization phase. Global polarization, when present, was also reflected within individual communities. These findings describe the simplified model used in the thesis, rather than observed behavior in real social networks."
+      ],
+      "sidebar": [
+        {"heading": "Authors", "body": "Giovanni Guidarini<br>Matteo Faverio"},
+        {"heading": "Supervisor", "body": "Prof. Carlo Piccardi"},
+        {"heading": "Degree", "body": "BSc Mathematical Engineering<br>Politecnico di Milano · 2024–2025"}
       ]
     }
   ]

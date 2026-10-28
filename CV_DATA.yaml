@@ -95,6 +95,23 @@ experience:
     verified: false
 
 projects:
+  - id: "fpga_poisson_solver"
+    title: "FPGA Poisson Solver with Conjugate Gradient"
+    organization: "Personal project"
+    start: "2026"
+    end: ""
+    status: "ongoing"
+    objective: "Build a fixed-iteration FPGA accelerator for the 2D Poisson equation using matrix-free Conjugate Gradient."
+    contributions:
+      - "Built C++ floating-point and fixed-point reference models."
+      - "Implemented SystemVerilog arithmetic, vector, memory, neighborhood-fetch, and Poisson-stencil blocks with RTL testbenches."
+    methods: ["finite differences", "Conjugate Gradient", "fixed-point arithmetic", "matrix-free stencil"]
+    tools: ["SystemVerilog", "C++"]
+    results: ["In four 16 × 16 software-model cases over 20 iterations, Q8.24 had a mean fixed-vs-floating-point relative L2 error of 3.55 × 10⁻⁵ with no detected arithmetic overflows."]
+    outputs: ["https://github.com/gioguida/FPGA-Poisson-Solver"]
+    tags: [fpga, hdl, numerical_methods, scientific_computing, hardware]
+    sources: ["FPGA-Poisson-Solver/project_plan.md", "FPGA-Poisson-Solver/results/fixed_point_study.txt"]
+    verified: true
   - id: "particle_track_reconstruction_spin_glass"
     title: "Particle Track Reconstruction as a Spin-Glass Optimization Problem"
     organization: "ETH Zurich, Computational Statistical Physics"

@@ -51,7 +51,7 @@
 
 [data-theme="dark"] {
   --base03: #d7c6dc;
-  --base01: #93a1a1;
+  --base01: #a696aa;
   --base00: #d7c6dc;
   --base0: #657b83;
   --base2: #35203a;
@@ -60,7 +60,7 @@
   --color-surface: rgba(53, 32, 58, .72);
   --color-text-primary: #d7c6dc;
   --color-text-secondary: #d7c6dc;
-  --color-text-muted: #93a1a1;
+  --color-text-muted: #a696aa;
   --color-border: #4b3150;
   --download-button: #35203a;
   --orange: #b4a7b7;

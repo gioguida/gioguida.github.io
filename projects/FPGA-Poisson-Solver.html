@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FPGA Poisson Solver with Conjugate Gradient</title>
+  <meta name="description" content="Building a fixed-point FPGA solver for the 2D Poisson equation using matrix-free Conjugate Gradient.">
+  <meta name="author" content="Giovanni Guidarini">
+  <link rel="canonical" href="https://gioguida.github.io/projects/FPGA-Poisson-Solver.html">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico?v=5">
+  <script src="../theme.js" defer></script>
+</head>
+<body>
+<nav class="site-nav" aria-label="Main navigation"><a href="../index.html">home</a><a href="../bio.html">bio</a><a href="../projects.html" aria-current="page">projects</a><a href="../lecture-notes.html">lecture notes</a></nav><button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾</button>
+<main class="page subpage">
+  <div class="detail-hero detail-hero--text-only"><div><p class="eyebrow">Ongoing project · 2026</p><h1>FPGA Poisson Solver with Conjugate Gradient</h1><p class="lede">Building a fixed-point FPGA solver for the 2D Poisson equation using matrix-free Conjugate Gradient.</p><div class="project-actions"><a class="download" href="https://github.com/gioguida/FPGA-Poisson-Solver">github</a></div></div></div>
+  <div class="detail-body"><div class="project-meta"><div class="project-meta-item"><strong>Status</strong><p class="muted">In progress</p></div><div class="project-meta-item"><strong>Tools</strong><p class="muted">SystemVerilog<br>C++<br>Fixed-point arithmetic</p></div><div class="project-meta-item"><strong>Target</strong><p class="muted">Zybo-class FPGA</p></div></div><div class="project-overview"><h2>Overview</h2><p>I am developing an FPGA accelerator for the two-dimensional Poisson equation. A five-point finite-difference stencil produces a linear system solved with Conjugate Gradient. The planned hardware computes each matrix–vector product directly from neighboring grid values, avoiding storage of a sparse matrix. A fixed iteration count is intended to make execution time predictable.</p><p>So far, I have built a C++ floating-point reference solver, a software fixed-point model, and SystemVerilog modules for arithmetic, AXPY operations, dot products, packed memory, neighborhood fetching, and the Poisson stencil. RTL testbenches compare several blocks with generated reference vectors, including stencil configurations with different memory lane counts.</p><p>In a software study of four 16 × 16 cases over 20 Conjugate Gradient iterations, Q8.24 produced the lowest mean relative L2 error against the floating-point solution among Q16.16, Q12.20, and Q8.24: 3.55 × 10⁻⁵, with no detected arithmetic overflows. This is a software-model result, not an FPGA performance measurement. The complete hardware controller and end-to-end solver are planned; board-level accuracy, timing, cycle count, and resource use remain to be measured.</p></div></div>
+</main>
+<footer class="page footer"><a href="../projects.html">back to projects</a></footer>
+</body></html>
