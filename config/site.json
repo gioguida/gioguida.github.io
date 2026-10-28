@@ -17,7 +17,7 @@
       "internship": "Internship",
       "downloadCv": "Curriculum Vitae"
     },
-    "photo": "media/profile_pic_wallpaper1.webp",
+    "photo": "media/profile_pic_wallpaper1.png",
     "photoAlt": "Portrait of Giovanni Guidarini outdoors",
     "cvFile": "media/Giovanni_Guidarini_CV.pdf",
     "internshipIds": ["anima_sgr_ai_intern"]
