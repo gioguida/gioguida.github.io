@@ -34,7 +34,8 @@
     "bodySize": "1.05rem",
     "smallSize": ".84rem",
     "bodyLineHeight": "1.58",
-    "headingLineHeight": ".98"
+    "headingLineHeight": ".98",
+    "projectTitleLineHeight": "1.18"
   },
   "geometry": {
     "pageMaxWidth": "1120px",
@@ -58,7 +59,11 @@
   "effects": {
     "shadow": "0 18px 48px rgba(0, 43, 54, .10)",
     "transition": ".2s ease",
-    "blur": "10px"
+    "blur": "10px",
+    "pageSlideDuration": "520ms",
+    "pageSlideEasing": "cubic-bezier(.22, 1, .36, 1)",
+    "footerSlideDuration": "170ms",
+    "footerSlideEasing": "cubic-bezier(.55, 0, .8, .4)"
   },
   "responsive": {
     "mobileBreakpoint": "760px"

@@ -67,8 +67,6 @@
       "date": "Course project · fall 2025",
       "order": 30,
       "featured": true,
-      "image": "media/projects/aise/comparative-loss-landscapes.png",
-      "imageAlt": "Comparison of PINN and data-driven loss landscapes",
       "links": {"report": "media/projects/aise/report.pdf"},
       "overview": [
         "The project examined three applications of machine learning to scientific computing. First, physics-informed and data-driven multilayer perceptrons were compared on the Poisson equation, with particular attention to their loss landscapes as problem complexity increased.",

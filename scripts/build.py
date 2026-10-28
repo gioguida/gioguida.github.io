@@ -94,6 +94,7 @@ def head(site, page_title, description, prefix="", canonical_path=""):
   <link rel="stylesheet" href="{prefix}style.css">
   <link rel="icon" type="image/x-icon" href="{prefix}favicon.ico?v=5">
   <script src="{prefix}theme.js" defer></script>
+  <script src="{prefix}page-transitions.js" defer></script>
 </head>'''
 
 
@@ -274,6 +275,7 @@ def generate_stylesheet(theme):
   --font-scale: {typography["scale"]};
   --font-size-body: {typography["bodySize"]};
   --font-size-small: {typography["smallSize"]};
+  --project-title-line-height: {typography["projectTitleLineHeight"]};
   --page-max-width: {geometry["pageMaxWidth"]};
   --page-gutter: {geometry["pageGutter"]};
   --radius-card: {geometry["cardRadius"]};
@@ -291,6 +293,10 @@ def generate_stylesheet(theme):
   --bio-photo-fixed-top: {geometry["bioPhotoFixedTop"]};
   --bio-photo-horizontal-bias: {geometry["bioPhotoHorizontalBias"]};
   --transition: {effects["transition"]};
+  --page-slide-duration: {effects["pageSlideDuration"]};
+  --page-slide-easing: {effects["pageSlideEasing"]};
+  --footer-slide-duration: {effects["footerSlideDuration"]};
+  --footer-slide-easing: {effects["footerSlideEasing"]};
   --blur: {effects["blur"]};
 }}'''
     dark_variables = f'''[data-theme="dark"] {{
