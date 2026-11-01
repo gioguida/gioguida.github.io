@@ -14,3 +14,9 @@ The bio page draws birth date, birth city, current location, education, and inte
 Fonts and other visual settings live in `config/theme.json`. Change a theme value, then run `python3 scripts/build.py` to update the generated CSS without replacing the published HTML pages. The legacy `--styles` option remains accepted for compatibility.
 
 Use the fixed top-right theme switch to toggle the Solarized light and Solarized dark color schemes. The selected scheme is remembered in the browser.
+
+Floating-menu navigation uses a staged page transition: a visible footer exits, the pages slide in menu order, and a visible destination footer enters. Tune `effects.pageSlideDuration`, `effects.pageSlideEasing`, `effects.footerSlideDuration`, and `effects.footerSlideEasing` in `config/theme.json`, then run `python3 scripts/build.py` to update the CSS variables. Reduced-motion preferences skip the animation. Ordinary links and failed page loads use normal navigation.
+
+Menu destinations are fetched after the initial page loads and again on menu hover or keyboard focus. The bio portrait is served as an optimized WebP asset; its original PNG is retained as the editable source.
+
+To preview page transitions locally, run `python3 -m http.server 8000` from the repository root and open `http://localhost:8000/`. Opening an HTML file directly with a `file://` URL prevents browsers from loading the next page for the transition.
