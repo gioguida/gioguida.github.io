@@ -242,6 +242,9 @@ def generate_stylesheet(theme):
     geometry = theme["geometry"]
     effects = theme["effects"]
     responsive = theme["responsive"]
+    lens_scale = effects.get("navLensScale")
+    if isinstance(lens_scale, bool) or not isinstance(lens_scale, (int, float)) or not 1 <= lens_scale <= 1.5:
+        raise SystemExit("config/theme.json: effects.navLensScale must be between 1 and 1.5")
     font_name = typography.get("primaryFont")
     if not isinstance(font_name, str) or not font_name.strip():
         raise SystemExit("config/theme.json: typography.primaryFont must be a Google Fonts family name")
@@ -292,9 +295,12 @@ def generate_stylesheet(theme):
   --bio-photo-top-offset: {geometry["bioPhotoTopOffset"]};
   --bio-photo-fixed-top: {geometry["bioPhotoFixedTop"]};
   --bio-photo-horizontal-bias: {geometry["bioPhotoHorizontalBias"]};
+  --bio-photo-column-gap: {geometry["bioPhotoColumnGap"]};
+  --bio-stack-breakpoint: {responsive["bioStackBreakpoint"]};
   --transition: {effects["transition"]};
   --page-slide-duration: {effects["pageSlideDuration"]};
   --page-slide-easing: {effects["pageSlideEasing"]};
+  --nav-lens-scale: {effects["navLensScale"]};
   --footer-slide-duration: {effects["footerSlideDuration"]};
   --footer-slide-easing: {effects["footerSlideEasing"]};
   --blur: {effects["blur"]};
@@ -320,6 +326,7 @@ def generate_stylesheet(theme):
     stylesheet = re.sub(r"\A@import[^\n]*;", lambda match: f"@import url('{font_url}');", stylesheet, count=1)
     stylesheet = re.sub(r"\A(@import[^\n]*;\n\n):root\s*\{.*?\}\n\n", lambda match: match.group(1) + variables + "\n\n", stylesheet, count=1, flags=re.S)
     stylesheet = re.sub(r'\[data-theme="dark"\]\s*\{.*?\}\n\n', dark_variables + "\n\n", stylesheet, count=1, flags=re.S)
+    stylesheet = stylesheet.replace("@media (max-width: 1000px)", f"@media (max-width: {responsive['bioStackBreakpoint']})")
     stylesheet = stylesheet.replace("@media (max-width: 760px)", f"@media (max-width: {responsive['mobileBreakpoint']})")
     # CSS is intentionally preserved during the normal validation build too.
     # The caller regenerates it only when explicitly requesting --force.

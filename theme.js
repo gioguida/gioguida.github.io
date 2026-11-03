@@ -15,7 +15,8 @@
   function positionBioPhoto() {
     var photo = document.querySelector(".bio-photo");
     var text = document.querySelector(".bio-intro");
-    if (!photo || !text || window.matchMedia("(max-width: 760px)").matches) {
+    var stackBreakpoint = getComputedStyle(root).getPropertyValue("--bio-stack-breakpoint").trim() || "1000px";
+    if (!photo || !text || window.matchMedia("(max-width: " + stackBreakpoint + ")").matches) {
       if (photo) {
         photo.style.removeProperty("--bio-photo-left");
       }
@@ -27,7 +28,10 @@
     var bias = parseFloat(getComputedStyle(document.documentElement)
       .getPropertyValue("--bio-photo-horizontal-bias")) || 0;
     var photoRect = photo.getBoundingClientRect();
-    var left = midpoint - bias - photoRect.width / 2;
+    var gap = parseFloat(getComputedStyle(root).getPropertyValue("--bio-photo-column-gap")) || 0;
+    var pageRight = document.querySelector(".bio-page").getBoundingClientRect().right;
+    var left = Math.max(textRight + gap,
+      Math.min(pageRight - photoRect.width, midpoint - bias - photoRect.width / 2));
 
     photo.style.setProperty("--bio-photo-left", left + "px");
   }

@@ -56,6 +56,80 @@
     return rect.top < window.innerHeight && rect.bottom > 0;
   }
 
+  function selectorBounds(nav, link) {
+    var navRect = nav.getBoundingClientRect();
+    var linkRect = link.getBoundingClientRect();
+    return {
+      left: linkRect.left - navRect.left,
+      top: linkRect.top - navRect.top,
+      width: linkRect.width,
+      height: linkRect.height
+    };
+  }
+
+  function positionNavSelector(nav) {
+    var active = nav.querySelector('a[aria-current="page"]');
+    var selector = nav.querySelector(".nav-selector");
+    if (!active || !selector) return;
+    var bounds = selectorBounds(nav, active);
+    selector.style.left = bounds.left + "px";
+    selector.style.top = bounds.top + "px";
+    selector.style.width = bounds.width + "px";
+    selector.style.height = bounds.height + "px";
+    updateNavLens(nav);
+  }
+
+  function updateNavLens(nav) {
+    var selector = nav.querySelector(".nav-selector");
+    if (!selector) return;
+    var lensRect = selector.getBoundingClientRect();
+    var magnification = parseFloat(timing("--nav-lens-scale", "1.12"));
+    nav.querySelectorAll("a").forEach(function (link) {
+      var label = link.querySelector(".nav-label");
+      if (!label || !link.getClientRects().length) return;
+      var linkRect = link.getBoundingClientRect();
+      if (!linkRect.width) return;
+      var overlap = Math.max(0, Math.min(lensRect.right, linkRect.right) - Math.max(lensRect.left, linkRect.left));
+      var coverage = Math.min(1, overlap / linkRect.width);
+      var smoothCoverage = coverage * coverage * (3 - 2 * coverage);
+      label.style.setProperty("--lens-scale", String(1 + (magnification - 1) * smoothCoverage));
+    });
+  }
+
+  function prepareNavSelector(nav) {
+    var active = nav.querySelector('a[aria-current="page"]');
+    if (!active || !active.getClientRects().length) return;
+    nav.querySelectorAll("a").forEach(function (link) {
+      var label = document.createElement("span");
+      label.className = "nav-label";
+      while (link.firstChild) label.appendChild(link.firstChild);
+      link.appendChild(label);
+    });
+    var selector = document.createElement("span");
+    selector.className = "nav-selector";
+    selector.setAttribute("aria-hidden", "true");
+    nav.appendChild(selector);
+    positionNavSelector(nav);
+    nav.classList.add("has-selector");
+  }
+
+  function slideNavSelector(nav, destination, duration) {
+    var selector = nav.querySelector(".nav-selector");
+    if (!selector) return Promise.resolve();
+    var bounds = selectorBounds(nav, destination);
+    var distance = bounds.left - parseFloat(selector.style.left);
+    var animation = selector.animate(
+      [{ transform: "translateX(0)" },
+        { transform: "translateX(" + distance + "px)" }],
+      { duration: duration, easing: timing("--page-slide-easing", "ease-out"), fill: "forwards" });
+    function followLens() {
+      updateNavLens(nav);
+      if (animation.playState === "running") requestAnimationFrame(followLens);
+    }
+    requestAnimationFrame(followLens);
+    return animation.finished.then(function () { updateNavLens(nav); });
+  }
+
   function resolveLinks(scope, base) {
     scope.querySelectorAll("[href], [src]").forEach(function (element) {
       ["href", "src"].forEach(function (attribute) {
@@ -85,7 +159,7 @@
   }
 
   function attachPhoto(panelElement, existingPhoto) {
-    if (window.matchMedia("(max-width: 760px)").matches) return;
+    if (window.matchMedia("(max-width: " + timing("--bio-stack-breakpoint", "1000px") + ")").matches) return;
     var photo = panelElement.querySelector(".bio-photo");
     if (!photo) return;
     var left;
@@ -98,7 +172,11 @@
       var intro = panelElement.querySelector(".bio-intro");
       var introRight = intro.getBoundingClientRect().right - panelElement.getBoundingClientRect().left;
       var bias = parseFloat(timing("--bio-photo-horizontal-bias", "0")) || 0;
-      left = introRight + (window.innerWidth - introRight) / 2 - bias - photo.getBoundingClientRect().width / 2;
+      var photoWidth = photo.getBoundingClientRect().width;
+      var gap = parseFloat(timing("--bio-photo-column-gap", "24px")) || 0;
+      var pageRight = panelElement.querySelector("main").getBoundingClientRect().right - panelElement.getBoundingClientRect().left;
+      left = Math.max(introRight + gap,
+        Math.min(pageRight - photoWidth, introRight + (window.innerWidth - introRight) / 2 - bias - photoWidth / 2));
       top = parseFloat(timing("--bio-photo-fixed-top", "160px"));
     }
     panelElement.appendChild(photo);
@@ -174,16 +252,18 @@
         currentPanel.querySelector("main").scrollTop = window.scrollY;
         oldMain.style.visibility = "hidden";
         oldFooter.style.visibility = "hidden";
-        await animate(track,
+        await Promise.all([animate(track,
           [{ transform: direction < 0 ? "translateX(-50%)" : "translateX(0)" },
             { transform: direction < 0 ? "translateX(0)" : "translateX(-50%)" }],
-          { duration: slideDuration, easing: timing("--page-slide-easing", "ease-out"), fill: "forwards" });
+          { duration: slideDuration, easing: timing("--page-slide-easing", "ease-out"), fill: "forwards" }),
+        slideNavSelector(document.querySelector(".site-nav"), link, slideDuration)]);
       }
 
       document.body.classList.toggle("home-page", next.body.classList.contains("home-page"));
       oldMain.replaceWith(nextMain);
       oldFooter.replaceWith(nextFooter);
       document.querySelector(".site-nav").replaceWith(nextNav);
+      prepareNavSelector(nextNav);
       document.title = next.title;
       ["description"].forEach(function (name) {
         var source = next.querySelector('meta[name="' + name + '"]');
@@ -230,6 +310,16 @@
     }
     event.preventDefault();
     navigate(link, destination < current ? -1 : 1);
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    prepareNavSelector(document.querySelector(".site-nav"));
+    if (document.fonts) document.fonts.ready.then(function () {
+      positionNavSelector(document.querySelector(".site-nav"));
+    });
+    window.addEventListener("resize", function () {
+      if (!busy) positionNavSelector(document.querySelector(".site-nav"));
+    });
   });
 
   document.addEventListener("pointerover", function (event) {

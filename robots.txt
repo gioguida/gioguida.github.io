@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gioguida.github.io/sitemap.xml
+Sitemap: https://giovanniguidarini.com/sitemap.xml
