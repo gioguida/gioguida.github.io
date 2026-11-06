@@ -150,12 +150,42 @@
     return wrapper;
   }
 
-  function preparePanel(panelElement) {
+  function preparePanel(panelElement, stage) {
     var footer = panelElement.querySelector(":scope > .footer");
-    if (panelElement.classList.contains("home-page")) {
-      panelElement.querySelector("main").style.paddingBottom = footer.getBoundingClientRect().height + "px";
+    var main = panelElement.querySelector("main");
+    var isHome = panelElement.classList.contains("home-page");
+    var enteringFooter = null;
+    if (stage) {
+      if (!isHome) {
+        panelElement.style.height = "auto";
+        panelElement.style.minHeight = "100%";
+        main.style.minHeight = "auto";
+        main.style.overflow = "visible";
+      }
+      var footerTop = footer.getBoundingClientRect().top - stage.getBoundingClientRect().top;
+      if (!isHome) {
+        panelElement.style.height = "";
+        panelElement.style.minHeight = "";
+        main.style.minHeight = "";
+        main.style.overflow = "";
+      }
+      if (footerTop < stage.clientHeight) {
+        enteringFooter = document.createElement("div");
+        enteringFooter.className = "transition-footer";
+        enteringFooter.style.top = footerTop + "px";
+      }
     }
-    footer.remove();
+    if (isHome) {
+      main.style.paddingBottom = footer.getBoundingClientRect().height + "px";
+    }
+    if (enteringFooter) {
+      footer.style.visibility = "";
+      enteringFooter.appendChild(footer);
+      stage.appendChild(enteringFooter);
+    } else {
+      footer.remove();
+    }
+    return enteringFooter;
   }
 
   function attachPhoto(panelElement, existingPhoto) {
@@ -245,18 +275,27 @@
         }
         stage.appendChild(track);
         document.body.appendChild(stage);
-        preparePanel(currentPanel);
-        preparePanel(nextPanel);
+        preparePanel(currentPanel, null);
+        var enteringFooter = preparePanel(nextPanel, stage);
         attachPhoto(currentPanel, oldMain.querySelector(".bio-photo"));
         attachPhoto(nextPanel, null);
         currentPanel.querySelector("main").scrollTop = window.scrollY;
         oldMain.style.visibility = "hidden";
         oldFooter.style.visibility = "hidden";
-        await Promise.all([animate(track,
-          [{ transform: direction < 0 ? "translateX(-50%)" : "translateX(0)" },
-            { transform: direction < 0 ? "translateX(0)" : "translateX(-50%)" }],
-          { duration: slideDuration, easing: timing("--page-slide-easing", "ease-out"), fill: "forwards" }),
-        slideNavSelector(document.querySelector(".site-nav"), link, slideDuration)]);
+        var slideEasing = timing("--page-slide-easing", "ease-out");
+        var animations = [
+          animate(track,
+            [{ transform: direction < 0 ? "translateX(-50%)" : "translateX(0)" },
+              { transform: direction < 0 ? "translateX(0)" : "translateX(-50%)" }],
+            { duration: slideDuration, easing: slideEasing, fill: "forwards" }),
+          slideNavSelector(document.querySelector(".site-nav"), link, slideDuration)
+        ];
+        if (enteringFooter) {
+          animations.push(animate(enteringFooter,
+            [{ transform: "translateY(110%)" }, { transform: "translateY(0)" }],
+            { duration: slideDuration, easing: slideEasing, fill: "forwards" }));
+        }
+        await Promise.all(animations);
       }
 
       document.body.classList.toggle("home-page", next.body.classList.contains("home-page"));
@@ -276,14 +315,7 @@
       history.pushState({}, "", target);
       resetScroll();
       window.dispatchEvent(new Event("resize"));
-      var footerWillEnter = visible(nextFooter) && !reduceMotion.matches;
-      if (footerWillEnter) nextFooter.style.transform = "translateY(110%)";
       if (stage) stage.remove();
-      if (footerWillEnter) {
-        await animate(nextFooter, [{ transform: "translateY(110%)" }, { transform: "translateY(0)" }],
-          { duration: footerDuration, easing: "cubic-bezier(.2, .6, .35, 1)" });
-        nextFooter.style.transform = "";
-      }
     } catch (error) {
       console.error("Page transition failed; opening the destination normally.", error);
       if (stage) stage.remove();

@@ -98,6 +98,7 @@ img { display: block; max-width: 100%; }
 .transition-panel { position: relative; display: flex; flex: 0 0 50%; flex-direction: column; height: 100%; overflow: hidden; background: var(--color-background); }
 .transition-panel main { flex: 1; min-height: 0; overflow: hidden; }
 .transition-panel > .bio-photo { position: absolute; }
+.transition-footer { position: absolute; z-index: 2; right: 0; left: 0; background: var(--color-background); will-change: transform; }
 
 .site-nav {
   position: fixed; z-index: 10; top: 22px; left: 50vw; transform: translateX(-50%);

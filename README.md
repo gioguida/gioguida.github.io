@@ -15,7 +15,7 @@ Fonts and other visual settings live in `config/theme.json`. Change a theme valu
 
 Use the fixed top-right theme switch to toggle the Solarized light and Solarized dark color schemes. The selected scheme is remembered in the browser.
 
-Floating-menu navigation uses a staged page transition: a visible footer exits, the pages slide in menu order, and a visible destination footer enters. Tune `effects.pageSlideDuration`, `effects.pageSlideEasing`, `effects.footerSlideDuration`, and `effects.footerSlideEasing` in `config/theme.json`, then run `python3 scripts/build.py` to update the CSS variables. Reduced-motion preferences skip the animation. Ordinary links and failed page loads use normal navigation.
+Floating-menu navigation uses an animated page transition: a visible footer exits, then the pages slide in menu order while any visible destination footer slides up simultaneously. Tune `effects.pageSlideDuration`, `effects.pageSlideEasing`, `effects.footerSlideDuration`, and `effects.footerSlideEasing` in `config/theme.json`, then run `python3 scripts/build.py` to update the CSS variables. Reduced-motion preferences skip the animation. Ordinary links and failed page loads use normal navigation.
 
 The active navigation rectangle acts as a lens: labels grow smoothly as it passes over them. Adjust `effects.navLensScale` in `config/theme.json` to change the magnification.
 
